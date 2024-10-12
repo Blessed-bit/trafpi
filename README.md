@@ -46,5 +46,3 @@ The network sniffer project was inspired by the following projects:
 
     tcpdump: a command-line packet capture and analysis tool
     Wireshark: a graphical packet capture and analysis tool
-
-I hope this README file helps you understand your network sniffer project better! Let me know if you have any questions or need further assistance.
