@@ -13,9 +13,23 @@
 #include <stdlib.h>
 #include <net/ethernet.h>
 #include <netinet/ip.h>
+#include <netinet/tcp.h>
+#include <netinet/udp.h>
+#include <arpa/inet.h> 
+#include <string.h>
 
 void initSniffer(char name[size_32]);
 void packetHandler(u_char *userData, const struct pcap_pkthdr *pkthdr, const u_char *packet);
-void findMonitor();
+//void checkPort(const struct ip *ipHeader, const u_char *packet, struct result *findPacket);
+
+struct result{
+    int len;
+    char protocol[size_32];
+    char ipSender[INET_ADDRSTRLEN];
+    char ipRecipient[INET_ADDRSTRLEN];
+    uint16_t portSender;
+    uint16_t portRecipient;
+};
+
 
 #endif
