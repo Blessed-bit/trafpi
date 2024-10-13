@@ -17,7 +17,7 @@ Usage
 To use the network sniffer, follow these steps:
 
     Compile the project using a C compiler (e.g. gcc)
-    Run the network sniffer using the command-line interface (e.g. ./sniffer -c wlan0)
+    Run the network sniffer using the command-line interface (e.g. sudo ./trafpi -c wlan0)
     Select the network interface to capture packets from (e.g. wlan0, eth0)
     Start the packet capture process
 
