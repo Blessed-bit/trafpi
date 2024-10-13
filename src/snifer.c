@@ -1,5 +1,6 @@
 #include "snifer.h"
 
+
 void checkPort(const struct ip *ipHeader, const u_char *packet, struct result *findPacket){
     if(ipHeader->ip_p == IPPROTO_TCP){
         const struct tcphdr *tcpHeader = (const struct tcphdr *)(packet + sizeof(struct ether_header) + sizeof(struct ip));
@@ -20,6 +21,8 @@ void packetHandler(u_char *userData, const struct pcap_pkthdr *pkthdr, const u_c
     const struct ether_header *ethernetHeader;
     const struct ip *ipHeader;
     struct result findPacket;
+    time_t mytime = time(NULL);
+    struct tm *now = localtime(&mytime);
     
     ethernetHeader = (struct ether_header *)packet;
     ipHeader = (struct ip *)(packet + sizeof(struct ether_header));
@@ -31,7 +34,9 @@ void packetHandler(u_char *userData, const struct pcap_pkthdr *pkthdr, const u_c
 
     checkPort(ipHeader, packet, &findPacket);
     
-    printf("[%s] packet find:\n packet len: %d bites\n packet ip sender = %s:%d\n packet ip recipient: %s:%d\n\n", findPacket.protocol, pkthdr->len, findPacket.ipSender, findPacket.portSender, findPacket.ipRecipient, findPacket.portRecipient);
+    printf("[%d:%d:%d] [%s] packet find:\n packet len: %d bites\n packet ip sender = %s:%d\n packet ip recipient: %s:%d\n", now->tm_hour, now->tm_min, now->tm_sec, findPacket.protocol,  pkthdr->len, findPacket.ipSender, findPacket.portSender, findPacket.ipRecipient, findPacket.portRecipient);
+    printf(" MAC recipient = %02x:%02x:%02x:%02x:%02x:%02x\n", ethernetHeader->ether_dhost[0],ethernetHeader->ether_dhost[1],ethernetHeader->ether_dhost[2],ethernetHeader->ether_dhost[3],ethernetHeader->ether_dhost[4],ethernetHeader->ether_dhost[5]);
+    printf(" MAC sender = %02x:%02x:%02x:%02x:%02x:%02x\n\n", ethernetHeader->ether_shost[0],ethernetHeader->ether_shost[1],ethernetHeader->ether_shost[2],ethernetHeader->ether_shost[3],ethernetHeader->ether_shost[4],ethernetHeader->ether_shost[5]);
 
 }
 

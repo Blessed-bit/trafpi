@@ -17,6 +17,7 @@
 #include <netinet/udp.h>
 #include <arpa/inet.h> 
 #include <string.h>
+#include <time.h>
 
 void initSniffer(char name[size_32]);
 void packetHandler(u_char *userData, const struct pcap_pkthdr *pkthdr, const u_char *packet);
