@@ -25,6 +25,7 @@ Commands
 
     -h, --help: displays the help menu
     -c <name network monitor>, --start <name network monitor>: starts the packet capture process on the specified network interface
+    -cS <name network monitor>, --startSave <name network monitor>: starts the packet capture process on the specified network interface + saved info to file
     -f, --find: finds available network interfaces
     -s <sample>, --sample <sample>: sniffs a template (not implemented)
 
