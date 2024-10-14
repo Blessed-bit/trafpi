@@ -8,6 +8,7 @@
 #define size_64 64
 #define size_32 32
 
+#include <curses.h>
 #include <pcap/pcap.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,8 +20,9 @@
 #include <string.h>
 #include <time.h>
 
-void initSniffer(char name[size_32]);
-void packetHandler(u_char *userData, const struct pcap_pkthdr *pkthdr, const u_char *packet);
+void initSniffer(char name[size_32], int status);
+void packetHandlerNotSave(u_char *userData, const struct pcap_pkthdr *pkthdr, const u_char *packet);
+void packetHandlerSave(u_char *userData, const struct pcap_pkthdr *pkthdr, const u_char *packet);
 //void checkPort(const struct ip *ipHeader, const u_char *packet, struct result *findPacket);
 
 struct result{
